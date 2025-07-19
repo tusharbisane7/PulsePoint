@@ -1,0 +1,192 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Base Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Consistent light background */
+    color: #333;
+}
+
+/* Find Doctor Container - Changed to light theme */
+.find-doc-container {
+  padding: 40px 20px;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Match body background for a clean start */
+  color: #333; /* Default dark text color */
+  font-family: 'Open Sans', sans-serif; /* Consistent body font */
+  text-align: center;
+}
+
+.find-doc-container h2 {
+    font-family: 'Montserrat', sans-serif; /* Consistent heading font */
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 30px; /* Slightly reduced for tighter feel */
+    color: #2c3e50; /* Dark blue-grey, consistent with Home page headings */
+}
+
+/* Search Input - Adapted for light background */
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 18px; /* Slightly more padding */
+  margin-top: 20px;
+  margin-bottom: 40px; /* More space below search */
+  border-radius: 10px;
+  border: 1px solid #ddd; /* Light border */
+  background: #ffffff; /* White background */
+  color: #333; /* Dark text */
+  font-size: 1.05em; /* Slightly larger font */
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Include padding in width */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+}
+
+.search-input::placeholder {
+  color: #888; /* Clearer placeholder color */
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #6dd5ed; /* Consistent highlight color from Home.jsx buttons */
+    box-shadow: 0 0 0 3px rgba(109, 213, 237, 0.3), 0 2px 10px rgba(0, 0, 0, 0.1); /* Enhanced glow and shadow */
+}
+
+/* Doctor Card List Grid */
+.doctor-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted for balanced layout */
+  gap: 30px; /* Increased gap */
+  padding: 0 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Doctor Card - Changed to light background */
+.doctor-card {
+  background: #ffffff; /* White background */
+  padding: 30px; /* Increased padding */
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Clearer shadow */
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0; /* Very light border */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push button to bottom */
+  text-align: left; /* Align text left within card */
+}
+
+.doctor-card:hover {
+  background-color: #f7fcff; /* Very light blue tint on hover */
+  transform: translateY(-8px); /* Lift effect */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+.doctor-card h3 {
+  font-family: 'Montserrat', sans-serif; /* Consistent heading font */
+  margin-bottom: 10px;
+  font-size: 24px; /* Larger */
+  color: #2193b0; /* Primary blue, consistent with Home features */
+  font-weight: 600;
+}
+
+.doctor-card p {
+  margin: 8px 0;
+  font-size: 1.05em; /* Slightly larger */
+  color: #555; /* Darker text for readability */
+}
+
+.doctor-card p strong {
+    color: #333;
+}
+
+/* Book Doctor Button - Consistent with Home page buttons */
+.book-doc-btn {
+  margin-top: 20px;
+  padding: 12px 25px; /* Consistent padding */
+  border: none;
+  background-color: #f7b731; /* Accent yellow, consistent with Home page hero buttons */
+  color: white;
+  border-radius: 50px; /* Fully rounded */
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Open Sans', sans-serif; /* Consistent button font */
+  text-decoration: none; /* For Link component */
+  display: inline-block; /* For Link component */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.book-doc-btn:hover {
+  background-color: #f5a623; /* Darker yellow on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.no-result {
+  margin-top: 40px;
+  font-style: italic;
+  color: #777; /* Darker color for readability */
+  font-size: 1.2em;
+  grid-column: 1 / -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .find-doc-container {
+        padding: 30px 15px;
+    }
+    .find-doc-container h2 {
+        font-size: 2.2em;
+    }
+    .search-input {
+        max-width: 90%;
+        padding: 12px;
+    }
+    .doctor-card-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0;
+    }
+    .doctor-card {
+        padding: 25px;
+    }
+    .doctor-card h3 {
+        font-size: 1.8em;
+    }
+    .doctor-card p {
+        font-size: 1em;
+    }
+    .book-doc-btn {
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+}
+
+/* Animations (keeping existing ones as they are consistent) */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes buttonAnim { /* Renamed from popIn for clarity of use case */
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.slide-up { animation: slideUp 0.7s ease-out forwards; }
+.scale-in { animation: scaleIn 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+.button-anim { animation: buttonAnim 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+
+/* Staggered animation delays for cards */
+.delay-0 { animation-delay: 0s; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }

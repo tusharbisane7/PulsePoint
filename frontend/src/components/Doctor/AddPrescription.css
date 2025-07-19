@@ -1,0 +1,137 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+.prescription-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #10141c; /* Darker background */
+  color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: 'Inter', sans-serif; /* Applied new font */
+}
+
+.prescription-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #4fbcff;
+  font-family: 'Poppins', sans-serif; /* Applied new font */
+  font-weight: 700;
+}
+
+.prescription-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.prescription-form input,
+.prescription-form textarea {
+  padding: 12px;
+  border: 1px solid #2d3748; /* Subtle border */
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #1f2a38;
+  color: #fff;
+  resize: vertical; /* Allow vertical resizing for textareas */
+  font-family: 'Inter', sans-serif; /* Applied new font */
+  transition: all 0.3s ease;
+}
+
+.prescription-form input::placeholder,
+.prescription-form textarea::placeholder {
+  color: #a0aec0; /* Lighter placeholder text */
+}
+
+.prescription-form input:focus,
+.prescription-form textarea:focus {
+  outline: none; /* Remove default outline */
+  border-color: #4fbcff; /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(79, 188, 255, 0.3); /* Blue glow */
+}
+
+.prescription-form button {
+  padding: 12px;
+  background-color: #4fbcff;
+  color: #000; /* Black text for contrast */
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600; /* Make button text bolder */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: 'Poppins', sans-serif; /* Applied new font */
+}
+
+.prescription-form button:hover {
+  background-color: #3fa1dd;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+@media (max-width: 600px) {
+  .prescription-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .prescription-container h2 {
+    font-size: 24px;
+  }
+
+  .prescription-form input,
+  .prescription-form textarea {
+    font-size: 15px;
+  }
+
+  .prescription-form button {
+    font-size: 16px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes inputAnim {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes buttonAnim {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.7s ease-out forwards;
+}
+
+.input-anim {
+  animation: inputAnim 0.6s ease-out forwards;
+}
+
+.button-anim {
+  animation: buttonAnim 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+/* Staggered animation delays */
+.delay-0 { animation-delay: 0s; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }

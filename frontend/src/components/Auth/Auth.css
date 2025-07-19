@@ -1,0 +1,268 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Base Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f2f5; /* Light background for the page */
+    display: flex; /* Helps in centering the auth container */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* Auth Container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure it takes full height */
+    width: 100%;
+}
+
+/* Glass Card Styling */
+.glass-card {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px; /* Max width for the card */
+    text-align: center;
+    overflow: hidden; /* For animations */
+}
+
+.glass-card h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Form Styling */
+.glass-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between inputs */
+}
+
+.glass-card input[type="text"],
+.glass-card input[type="email"],
+.glass-card input[type="password"],
+.glass-card input[type="tel"],
+.glass-card input[type="date"],
+.glass-card select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border for glass look */
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque background */
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.glass-card textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.glass-card input::placeholder,
+.glass-card textarea::placeholder,
+.glass-card select option[value=""] {
+    color: #888; /* Placeholder color */
+}
+
+/* Specific styling for select dropdown */
+.glass-card select {
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292%22%20height%3D%22292%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2C146.9c0%2C0.6-0.2%2C1.2-0.6%2C1.6l-136%2C136c-0.8%2C0.8-1.6%2C1.2-2.4%2C1.2s-1.6-0.4-2.4-1.2l-136-136c-0.8-0.8-1.2-1.6-1.2-2.4c0-0.8%2C0.4-1.6%2C1.2-2.4l14.4-14.4c0.8-0.8%2C1.6-1.2%2C2.4-1.2s1.6%2C0.4%2C2.4%2C1.2L146%2C253.5l119.2-119.2c0.8-0.8%2C1.6-1.2%2C2.4-1.2s1.6%2C0.4%2C2.4%2C1.2l14.4%2C14.4C286.8%2C145.7%2C287%2C146.3%2C287%2C146.9z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Space for the arrow */
+}
+
+.glass-card input:focus,
+.glass-card select:focus,
+.glass-card textarea:focus {
+    border-color: #6dd5ed; /* Highlight border on focus */
+    box-shadow: 0 0 0 3px rgba(109, 213, 237, 0.3); /* Subtle glow */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque on focus */
+    outline: none;
+}
+
+.glass-card .date-label {
+    align-self: flex-start; /* Align label to the left */
+    font-size: 0.9em;
+    color: #444;
+    margin-bottom: -10px; /* Pull it closer to the input */
+    font-weight: 600;
+}
+
+/* Button Styling */
+.auth-button {
+    background-color: #2193b0; /* Primary blue */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-button:hover {
+    background-color: #1a7b93;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer text (Login/Signup link) */
+.auth-footer-text {
+    font-size: 0.95em;
+    color: #444;
+    margin-top: 20px;
+}
+
+.auth-footer-text a {
+    color: #2193b0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.auth-footer-text a:hover {
+    color: #f7b731; /* Accent yellow on hover */
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes headerAnim {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes inputAnim {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.7s ease-out forwards;
+}
+
+.header-anim {
+    animation: headerAnim 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+.input-anim {
+    animation: inputAnim 0.5s ease-out forwards;
+    /* Apply animation delays via delay-X classes */
+}
+
+.pop-in {
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+/* Animation Delays for Staggered Effects */
+.delay-0 { animation-delay: 0s; }
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.1s; }
+.delay-3 { animation-delay: 0.15s; }
+.delay-4 { animation-delay: 0.2s; }
+.delay-5 { animation-delay: 0.25s; }
+.delay-6 { animation-delay: 0.3s; }
+.delay-7 { animation-delay: 0.35s; }
+.delay-8 { animation-delay: 0.4s; }
+.delay-9 { animation-delay: 0.45s; }
+.delay-10 { animation-delay: 0.5s; }
+.delay-11 { animation-delay: 0.55s; }
+.delay-12 { animation-delay: 0.6s; }
+.delay-13 { animation-delay: 0.65s; }
+.delay-14 { animation-delay: 0.7s; }
+/* Add more delay classes if needed for more inputs */
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .glass-card {
+        padding: 30px 20px;
+        margin: 20px; /* Reduce margin on small screens */
+        border-radius: 10px;
+    }
+
+    .glass-card h2 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .glass-card input,
+    .glass-card select,
+    .glass-card textarea {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .auth-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .auth-footer-text {
+        font-size: 0.85em;
+    }
+
+    .glass-card .date-label {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 400px) {
+    .glass-card {
+        padding: 20px 15px;
+    }
+}

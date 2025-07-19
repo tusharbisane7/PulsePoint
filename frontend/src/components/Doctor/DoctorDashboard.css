@@ -1,0 +1,194 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+.doctor-dashboard {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Inter', sans-serif; /* Applied new font */
+  color: #333; /* Default text color */
+  background-color: #f8f9fa; /* Light background */
+}
+
+.dashboard-header {
+  text-align: center;
+  background: linear-gradient(90deg, #4f46e5, #3b82f6);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  font-family: 'Poppins', sans-serif; /* Applied new font */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-header h2 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem; /* Slightly larger for impact */
+}
+
+.dashboard-header p {
+    font-weight: 400;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.appointments-section h3 {
+  font-size: 1.8rem; /* Slightly larger */
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.appointment-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; /* Increased gap */
+}
+
+.appointment-card {
+  background: #ffffff; /* White card background */
+  padding: 1.5rem; /* Increased padding */
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0; /* Subtle border */
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Enhanced shadow */
+}
+
+.appointment-card h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    color: #4f46e5; /* Primary blue for names */
+    margin-bottom: 0.5rem;
+}
+
+.appointment-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.4rem;
+}
+
+.prescribe-btn {
+  margin-top: 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none; /* For Link component */
+  display: inline-block; /* For Link component */
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.prescribe-btn:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+
+.actions-section {
+  margin-top: 3rem; /* Increased margin */
+  display: flex;
+  gap: 1.5rem; /* Increased gap */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-btn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.6rem; /* Increased padding */
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600; /* Bolder text */
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none; /* For Link component */
+  display: inline-block; /* For Link component */
+  font-family: 'Poppins', sans-serif; /* Applied new font */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .doctor-dashboard {
+    padding: 1rem;
+  }
+  .dashboard-header h2 {
+    font-size: 1.8rem;
+  }
+  .dashboard-header p {
+    font-size: 0.9rem;
+  }
+  .appointments-section h3 {
+    font-size: 1.5rem;
+  }
+  .appointment-cards {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+  }
+  .action-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes buttonAnim {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.7s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+.button-anim {
+  animation: buttonAnim 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+/* Staggered animation delays */
+.delay-0 { animation-delay: 0s; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }

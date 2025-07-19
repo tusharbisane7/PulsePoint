@@ -1,0 +1,195 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* Base Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Consistent light background */
+    color: #333;
+    box-sizing: border-box;
+}
+
+/* Profile Container */
+.profile-container {
+    max-width: 700px; /* Slightly wider to accommodate more fields */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+    text-align: center;
+}
+
+.profile-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8em;
+    color: #2c3e50; /* Consistent dark heading */
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Profile Form */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between form groups */
+    align-items: center; /* Center form elements */
+}
+
+/* Profile Picture Section */
+.profile-picture-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #6dd5ed; /* Light blue border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.file-input {
+    display: none; /* Hide default file input */
+}
+
+.file-input-label {
+    background-color: #bbdefb; /* Light blue button */
+    color: #2193b0; /* Dark blue text */
+    padding: 8px 15px;
+    border-radius: 50px; /* Rounded button */
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.file-input-label:hover {
+    background-color: #90caf9; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+/* Labels for Inputs */
+.input-label {
+    align-self: flex-start; /* Align label to the left */
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: -5px; /* Pull it closer to the input */
+    font-weight: 600;
+}
+
+/* Form Inputs and Selects */
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px;
+    background-color: #fcfcfc; /* Very light background for inputs */
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input.read-only {
+    background-color: #f0f0f0; /* Slightly darker for read-only */
+    color: #666;
+    cursor: not-allowed;
+}
+
+.form-input::placeholder {
+    color: #888;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #6dd5ed; /* Consistent light blue focus */
+    box-shadow: 0 0 0 3px rgba(109, 213, 237, 0.3);
+}
+
+/* Specific styling for select dropdown */
+.form-input[name="gender"],
+.form-input[name="bloodGroup"],
+.form-input[name="state"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292%22%20height%3D%22292%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2C146.9c0%2C0.6-0.2%2C1.2-0.6%2C1.6l-136%2C136c-0.8%2C0.8-1.6%2C1.2-2.4%2C1.2s-1.6-0.4-2.4-1.2l-136-136c-0.8-0.8-1.2-1.6-1.2-2.4c0-0.8%2C0.4-1.6%2C1.2-2.4l14.4-14.4c0.8-0.8%2C1.6-1.2%2C2.4-1.2s1.6%2C0.4%2C2.4%2C1.2L146%2C253.5l119.2-119.2c0.8-0.8%2C1.6-1.2%2C2.4-1.2s1.6%2C0.4%2C2.4%2C1.2l14.4%2C14.4C286.8%2C145.7%2C287%2C146.3%2C287%2C146.9z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+/* Save Button */
+.save-button {
+    background-color: #2193b0; /* Primary blue button */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.save-button:hover {
+    background-color: #1a7b93;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Success Message */
+.success-msg {
+    color: #2e7d32; /* Dark green for success */
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes inputAnim { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.slide-up { animation: slideUp 0.7s ease-out forwards; }
+.scale-in { animation: scaleIn 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+.input-anim { animation: inputAnim 0.6s ease-out forwards; }
+.pop-in { animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+
+/* Staggered Animation Delays */
+.delay-0 { animation-delay: 0s; } .delay-1 { animation-delay: 0.05s; } .delay-2 { animation-delay: 0.1s; }
+.delay-3 { animation-delay: 0.15s; } .delay-4 { animation-delay: 0.2s; } .delay-5 { animation-delay: 0.25s; }
+.delay-6 { animation-delay: 0.3s; } .delay-7 { animation-delay: 0.35s; } .delay-8 { animation-delay: 0.4s; }
+.delay-9 { animation-delay: 0.45s; } .delay-10 { animation-delay: 0.5s; } .delay-11 { animation-delay: 0.55s; }
+.delay-12 { animation-delay: 0.6s; } .delay-13 { animation-delay: 0.65s; } .delay-14 { animation-delay: 0.7s; }
+.delay-15 { animation-delay: 0.75s; } .delay-16 { animation-delay: 0.8s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container { margin: 20px; padding: 25px; }
+    .profile-container h2 { font-size: 2.2em; }
+    .profile-form { gap: 10px; }
+    .profile-pic { width: 100px; height: 100px; }
+    .file-input-label { padding: 6px 12px; font-size: 0.85em; }
+    .input-label { font-size: 0.9em; }
+    .form-input { padding: 10px 12px; font-size: 0.95em; }
+    .save-button { padding: 10px 20px; font-size: 1em; }
+    .success-msg { font-size: 0.9em; }
+}
