@@ -1,181 +1,352 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+import React, { useState } from 'react';
+import './MedicinePage.css';
 
-/* Base Styles */
-body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa; /* Light grey background */
-    color: #333;
-}
-
-/* Medicine Container */
-.medicine-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.medicine-container h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.8em;
-    color: #2c3e50; /* Dark blue-grey */
-    margin-bottom: 40px;
-    font-weight: 700;
-}
-
-/* Medicine List Grid */
-.medicine-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted for more columns */
-    gap: 30px;
-    padding: 0 10px;
-}
-
-/* Medicine Card */
-.medicine-card {
-    background-color: #e6f7ff; /* Light blue background */
-    border: 1px solid #b3e0ff; /* Lighter blue border */
-    border-radius: 10px;
-    padding: 25px;
-    text-align: left;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.medicine-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.medicine-card .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 10px;
-}
-
-.medicine-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6em; /* Slightly smaller for better fit */
-    color: #2193b0; /* Primary blue */
-    margin: 0; /* Reset margin */
-    font-weight: 600;
-}
-
-.medicine-card .price {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.4em;
-    font-weight: 700;
-    color: #f7b731; /* Accent yellow */
-    margin-left: 15px; /* Space from name */
-    white-space: nowrap; /* Prevent price from wrapping */
-}
-
-.medicine-card .category,
-.medicine-card .company {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 8px;
-}
-
-.medicine-card .category strong,
-.medicine-card .company strong {
-    color: #333; /* Darker for labels */
-}
-
-.medicine-card .usage {
-    font-size: 0.95em;
-    color: #666;
-    line-height: 1.5;
-    margin-top: 15px; /* Space from company/category */
-    flex-grow: 1; /* Allow description to take available space */
-}
-
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes scaleIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-.slide-up {
-    animation: slideUp 0.7s ease-out forwards;
-}
-
-.scale-in {
-    animation: scaleIn 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-}
-
-/* Staggered animation delays for cards */
-.delay-0 { animation-delay: 0s; }
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-/* Add more delay classes if you expand the cycle of animations */
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .medicine-list {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust for medium screens */
+// Function to generate a large list of medicines
+const generateMedicines = () => {
+  const baseMedicines = [
+    {
+      name: 'Paracetamol 500mg',
+      category: 'Pain Reliever',
+      price: '₹25.00',
+      usage: 'Used to treat mild to moderate pain and reduce fever.',
+      marathiUsage: 'सौम्य ते मध्यम वेदनांवर उपचार करण्यासाठी आणि ताप कमी करण्यासाठी वापरले जाते.',
+      company: 'Generic Pharma'
+    },
+    {
+      name: 'Amoxicillin 250mg',
+      category: 'Antibiotic',
+      price: '₹80.50',
+      usage: 'Used to treat bacterial infections such as chest and dental infections.',
+      marathiUsage: 'छाती आणि दातांच्या संसर्गासारख्या जिवाणू संसर्गावर उपचार करण्यासाठी वापरले जाते.',
+      company: 'LifeCare Labs'
+    },
+    {
+      name: 'Cetirizine 10mg',
+      category: 'Anti-Allergy',
+      price: '₹15.75',
+      usage: 'Relieves allergy symptoms like runny nose, sneezing, and itching.',
+      marathiUsage: 'वाहणारे नाक, शिंका येणे आणि खाज सुटणे यांसारख्या ऍलर्जीच्या लक्षणांपासून आराम देते.',
+      company: 'MediCorp'
+    },
+    {
+      name: 'Omeprazole 20mg',
+      category: 'Antacid',
+      price: '₹45.20',
+      usage: 'Reduces stomach acid to treat heartburn and acid reflux.',
+      marathiUsage: 'छातीत जळजळ आणि ऍसिड रिफ्लक्सवर उपचार करण्यासाठी पोटातील ऍसिड कमी करते.',
+      company: 'Zenith Pharmaceuticals'
+    },
+    {
+      name: 'Multivitamin',
+      category: 'Vitamin Supplement',
+      price: '₹120.00',
+      usage: 'Provides essential vitamins and minerals for overall health.',
+      marathiUsage: 'एकूण आरोग्यासाठी आवश्यक जीवनसत्त्वे आणि खनिजे प्रदान करते.',
+      company: 'NutriPlus'
+    },
+    {
+      name: 'Ibuprofen 400mg',
+      category: 'NSAID',
+      price: '₹35.00',
+      usage: 'Reduces pain, inflammation, and fever. Common for headaches, muscle aches.',
+      marathiUsage: 'वेदना, सूज आणि ताप कमी करते. डोकेदुखी, स्नायू दुखणे यासाठी सामान्य आहे.',
+      company: 'PainAway Inc.'
+    },
+    {
+      name: 'Ranitidine 150mg',
+      category: 'Antacid',
+      price: '₹22.50',
+      usage: 'Used to prevent and treat heartburn and other symptoms caused by too much stomach acid.',
+      marathiUsage: 'जास्त पोटात ऍसिडमुळे होणारी छातीत जळजळ आणि इतर लक्षणांना प्रतिबंध घालण्यासाठी आणि त्यावर उपचार करण्यासाठी वापरले जाते.',
+      company: 'Gastronil'
+    },
+    {
+      name: 'Dextromethorphan',
+      category: 'Cough Suppressant',
+      price: '₹60.00',
+      usage: 'Relieves dry cough. Often found in cold and flu medicines.',
+      marathiUsage: 'कोरड्या खोकल्यापासून आराम देते. अनेकदा सर्दी आणि फ्लूच्या औषधांमध्ये आढळते.',
+      company: 'CoughEase Co.'
+    },
+    {
+      name: 'Lisinopril 10mg',
+      category: 'Blood Pressure',
+      price: '₹95.00',
+      usage: 'Used to treat high blood pressure and heart failure.',
+      marathiUsage: 'उच्च रक्तदाब आणि हृदयविकारावर उपचार करण्यासाठी वापरले जाते.',
+      company: 'CardioHealth'
+    },
+    {
+      name: 'Metformin 500mg',
+      category: 'Diabetes',
+      price: '₹70.00',
+      usage: 'Manages blood sugar levels in people with type 2 diabetes.',
+      marathiUsage: 'प्रकार 2 मधुमेह असलेल्या लोकांमध्ये रक्तातील साखरेची पातळी नियंत्रित करते.',
+      company: 'GlycoMed'
+    },
+    {
+      name: 'Azithromycin 500mg',
+      category: 'Antibiotic',
+      price: '₹150.00',
+      usage: 'Used to treat bacterial infections, including respiratory and skin infections, and some STIs.',
+      marathiUsage: 'श्वासोच्छ्वास आणि त्वचेच्या संसर्गासह, तसेच काही लैंगिक संक्रमित संसर्गावर उपचार करण्यासाठी वापरले जाते.',
+      company: 'BioPharma'
+    },
+    {
+      name: 'Ciprofloxacin 500mg',
+      category: 'Antibiotic',
+      price: '₹110.00',
+      usage: 'Broad-spectrum antibiotic used for various bacterial infections, including typhoid fever.',
+      marathiUsage: 'टायफॉइड तापासह विविध जिवाणू संसर्गांसाठी वापरले जाणारे ब्रॉड-स्पेक्ट्रम प्रतिजैविक.',
+      company: 'MediGen'
+    },
+    {
+      name: 'Artesunate-Amodiaquine',
+      category: 'Anti-malarial',
+      price: '₹250.00',
+      usage: 'Combination therapy for the treatment of uncomplicated malaria.',
+      marathiUsage: 'गुंतागुंत नसलेल्या मलेरियाच्या उपचारांसाठी एकत्रित थेरपी.',
+      company: 'Global Health'
+    },
+    {
+      name: 'Doxycycline 100mg',
+      category: 'Antibiotic',
+      price: '₹60.00',
+      usage: 'Antibiotic used for various bacterial infections, also used for malaria prevention and treatment.',
+      marathiUsage: 'विविध जिवाणू संसर्गांसाठी वापरले जाणारे प्रतिजैविक, मलेरिया प्रतिबंध आणि उपचारांसाठी देखील वापरले जाते.',
+      company: 'PharmaCore'
+    },
+    {
+      name: 'Papaya Leaf Extract',
+      category: 'Supplement',
+      price: '₹180.00',
+      usage: 'Natural supplement often used to help increase platelet count during dengue fever.',
+      marathiUsage: 'डेंग्यू तापादरम्यान प्लेटलेटची संख्या वाढवण्यासाठी नैसर्गिक पूरक म्हणून वापरले जाते.',
+      company: 'Herbal Remedies'
+    },
+    {
+      name: 'Mefenamic Acid 500mg',
+      category: 'NSAID / Pain Reliever',
+      price: '₹40.00',
+      usage: 'Used to relieve mild to moderate pain, fever, and menstrual pain (period pain).',
+      marathiUsage: 'सौम्य ते मध्यम वेदना, ताप आणि मासिक पाळीच्या वेदनांपासून आराम देण्यासाठी वापरले जाते.',
+      company: 'FemCare Pharma'
+    },
+    {
+      name: 'Drotaverine 40mg',
+      category: 'Antispasmodic',
+      price: '₹55.00',
+      usage: 'Used to relieve smooth muscle spasms, often associated with menstrual cramps and abdominal pain.',
+      marathiUsage: 'गुळगुळीत स्नायूंच्या पेटके कमी करण्यासाठी वापरले जाते, जे मासिक पाळीच्या वेदना आणि ओटीपोटात दुखण्याशी संबंधित असतात.',
+      company: 'SpasmoRelief'
+    },
+    {
+      name: 'Vitamin C 500mg',
+      category: 'Vitamin Supplement',
+      price: '₹30.00',
+      usage: 'Boosts immune system, acts as an antioxidant. Important for general health and recovery.',
+      marathiUsage: 'रोगप्रतिकारशक्ती वाढवते, अँटीऑक्सिडंट म्हणून कार्य करते. सामान्य आरोग्य आणि बरे होण्यासाठी महत्त्वाचे.',
+      company: 'HealthBoost'
+    },
+    {
+      name: 'Zinc Sulfate 50mg',
+      category: 'Mineral Supplement',
+      price: '₹20.00',
+      usage: 'Essential mineral for immune function and wound healing. Often recommended for immune support.',
+      marathiUsage: 'रोगप्रतिकारशक्ती आणि जखम भरण्यासाठी आवश्यक खनिज. रोगप्रतिकारशक्ती वाढवण्यासाठी अनेकदा शिफारस केली जाते.',
+      company: 'NutriCore'
+    },
+    {
+      name: 'ORS (Oral Rehydration Salts)',
+      category: 'Electrolyte Supplement',
+      price: '₹10.00',
+      usage: 'Used to prevent and treat dehydration caused by diarrhea or excessive fluid loss.',
+      marathiUsage: 'अतिसार किंवा जास्त द्रवपदार्थ गमावल्यामुळे होणारी निर्जलीकरण (Dehydration) रोखण्यासाठी आणि उपचार करण्यासाठी वापरले जाते.',
+      company: 'HydraLife'
+    },
+    {
+      name: 'Digestive Enzymes',
+      category: 'Digestive Aid',
+      price: '₹90.00',
+      usage: 'Helps in the digestion of food and absorption of nutrients. Relieves indigestion symptoms.',
+      marathiUsage: 'अन्न पचण्यास आणि पोषक द्रव्ये शोषण्यास मदत करते. अपचनाची लक्षणे कमी करते.',
+      company: 'GastroAid'
+    },
+    // --- Commonly prescribed by MBBS doctors (General Practice) ---
+    {
+      name: 'Amlodipine 5mg',
+      category: 'Blood Pressure',
+      price: '₹65.00',
+      usage: 'Used to treat high blood pressure and chest pain (angina).',
+      marathiUsage: 'उच्च रक्तदाब आणि छातीत दुखणे (ॲन्जिना) यावर उपचार करण्यासाठी वापरले जाते.',
+      company: 'CardioCare'
+    },
+    {
+      name: 'Atorvastatin 10mg',
+      category: 'Cholesterol Lowering',
+      price: '₹180.00',
+      usage: 'Used to lower high cholesterol and triglyceride levels, reducing heart disease risk.',
+      marathiUsage: 'उच्च कोलेस्ट्रॉल आणि ट्रायग्लिसराइड पातळी कमी करण्यासाठी वापरले जाते, ज्यामुळे हृदयरोगाचा धोका कमी होतो.',
+      company: 'LipidGuard'
+    },
+    {
+      name: 'Pantoprazole 40mg',
+      category: 'Antacid / PPI',
+      price: '₹50.00',
+      usage: 'Reduces stomach acid, used for acid reflux, ulcers, and heartburn.',
+      marathiUsage: 'पोटातील ऍसिड कमी करते, ऍसिड रिफ्लक्स, अल्सर आणि छातीत जळजळ यावर वापरले जाते.',
+      company: 'GastroShield'
+    },
+    {
+      name: 'Sertraline 50mg',
+      category: 'Antidepressant',
+      price: '₹220.00',
+      usage: 'Used to treat depression, anxiety disorders, and panic attacks.',
+      marathiUsage: 'नैराश्य, चिंता विकार आणि पॅनिक अटॅकवर उपचार करण्यासाठी वापरले जाते.',
+      company: 'NeuroWell'
+    },
+    {
+      name: 'Montelukast 10mg',
+      category: 'Anti-asthmatic / Anti-allergy',
+      price: '₹90.00',
+      usage: 'Used to prevent asthma attacks and relieve symptoms of allergies.',
+      marathiUsage: 'दम्याच्या झटक्यांना प्रतिबंध घालण्यासाठी आणि ऍलर्जीची लक्षणे कमी करण्यासाठी वापरले जाते.',
+      company: 'BreatheEasy'
+    },
+    {
+      name: 'Cough Syrup (Guaifenesin/Bromhexine)',
+      category: 'Cough & Cold',
+      price: '₹75.00',
+      usage: 'Relieves cough by loosening mucus and making it easier to cough up.',
+      marathiUsage: 'कफ पातळ करून आणि तो बाहेर काढणे सोपे करून खोकल्यापासून आराम देते.',
+      company: 'PhlegmOut'
+    },
+    {
+      name: 'Loperamide 2mg',
+      category: 'Anti-diarrheal',
+      price: '₹18.00',
+      usage: 'Used to treat sudden diarrhea by slowing down the movement of the gut.',
+      marathiUsage: 'आतड्यांची हालचाल कमी करून अचानक अतिसारावर उपचार करण्यासाठी वापरले जाते.',
+      company: 'StopDiarrhea'
+    },
+    {
+      name: 'Domperidone 10mg',
+      category: 'Anti-emetic',
+      price: '₹28.00',
+      usage: 'Used to relieve nausea and vomiting, and to promote stomach emptying.',
+      marathiUsage: 'मळमळ आणि उलट्या कमी करण्यासाठी आणि पोटातील अन्न बाहेर काढण्यास मदत करण्यासाठी वापरले जाते.',
+      company: 'VomitStop'
     }
-}
+  ];
 
-@media (max-width: 768px) {
-    .medicine-container {
-        margin: 20px auto;
-        padding: 15px;
-        max-width: 95%;
-    }
+  const allMedicines = [];
+  // Generate 100 entries, cycling through the expanded baseMedicines list
+  for (let i = 0; i < 100; i++) {
+    const originalMed = baseMedicines[i % baseMedicines.length];
+    allMedicines.push({
+      id: i + 1,
+      name: `${originalMed.name} (Batch ${Math.floor(i / baseMedicines.length) + 1})`,
+      category: originalMed.category,
+      price: `₹${(parseFloat(originalMed.price.replace('₹', '')) + (i % 5)).toFixed(2)}`,
+      usage: originalMed.usage,
+      marathiUsage: originalMed.marathiUsage,
+      company: originalMed.company
+    });
+  }
+  return allMedicines;
+};
 
-    .medicine-container h2 {
-        font-size: 2.2em;
-        margin-bottom: 30px;
-    }
+const medicines = generateMedicines();
 
-    .medicine-list {
-        grid-template-columns: 1fr; /* Stack cards on small screens */
-        gap: 20px;
-    }
+const MedicinePage = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [language, setLanguage] = useState('english'); // 'english' or 'marathi'
 
-    .medicine-card {
-        padding: 20px;
-    }
+  const categories = ['All', ...new Set(medicines.map(med => med.category))];
 
-    .medicine-card h3 {
-        font-size: 1.4em;
-    }
+  const filteredMedicines = medicines.filter(med => {
+    const matchesSearch = med.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || med.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
-    .medicine-card .price {
-        font-size: 1.2em;
-    }
+  const handleBuyNow = (medicineName) => {
+    alert(`You've chosen to buy ${medicineName}! (This is a placeholder action)`);
+    // In a real application, you'd integrate with a cart, payment gateway, etc.
+  };
 
-    .medicine-card .category,
-    .medicine-card .company,
-    .medicine-card .usage {
-        font-size: 0.9em;
-    }
-}
+  return (
+    <div className="medicine-container fade-in">
+      <h2 className="slide-up">Available Medicines</h2>
+
+      <div className="controls-bar">
+        {/* Search Input */}
+        <input
+          type="text"
+          placeholder="Search medicines..."
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        {/* Category Filter */}
+        <select
+          className="category-select"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          {categories.map(category => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+
+        {/* Language Toggle */}
+        <div className="language-toggle">
+          <button
+            className={language === 'english' ? 'active' : ''}
+            onClick={() => setLanguage('english')}
+          >
+            English
+          </button>
+          <button
+            className={language === 'marathi' ? 'active' : ''}
+            onClick={() => setLanguage('marathi')}
+          >
+            मराठी
+          </button>
+        </div>
+      </div>
+
+      <div className="medicine-list">
+        {filteredMedicines.length > 0 ? (
+          filteredMedicines.map((med, index) => (
+            <div key={med.id} className={`medicine-card scale-in delay-${index % 5}`}>
+              <div className="card-header">
+                <h3>{med.name}</h3>
+                <span className="price">{med.price}</span>
+              </div>
+              <p className="category"><strong>Category:</strong> {med.category}</p>
+              <p className="company"><strong>Company:</strong> {med.company}</p>
+              <p className="usage">
+                <strong>Usage:</strong> {language === 'english' ? med.usage : med.marathiUsage}
+              </p>
+              <button
+                className="buy-now-button"
+                onClick={() => handleBuyNow(med.name)}
+              >
+                Buy Now
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="no-results">No medicines found matching your criteria.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default MedicinePage;
